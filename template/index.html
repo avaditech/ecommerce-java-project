@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shoply advanced responsive eCommerce demo">
+  <title>Shoply — Advanced Store</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div id="toast-container" aria-live="polite"></div>
+
+  <header class="site-header">
+    <div class="container topbar">
+      <button class="mobile-menu-btn icon-btn" id="mobile-menu-btn" aria-label="Open menu">☰</button>
+      <a href="#" class="logo">Ecommerce Shoply<span>.</span></a>
+
+      <nav class="desktop-nav">
+        <a href="#home">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#categories">Categories</a>
+        <a href="#deals">Deals</a>
+      </nav>
+
+      <div class="header-search">
+        <span>⌕</span>
+        <input id="search-input" type="search" placeholder="Search products, brands..." autocomplete="off">
+        <div id="search-suggestions" class="search-suggestions"></div>
+      </div>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="theme-btn" title="Toggle theme" aria-label="Toggle theme">☾</button>
+        <button class="icon-btn" id="wishlist-btn" title="Wishlist" aria-label="Open wishlist">♡<b id="wishlist-count"
+            class="badge">0</b></button>
+        <button class="icon-btn" id="cart-btn" title="Shopping cart" aria-label="Open cart">🛒<b id="cart-count"
+            class="badge">0</b></button>
+      </div>
+    </div>
+
+    <nav class="mobile-nav" id="mobile-nav">
+      <a href="#home">Home</a><a href="#shop">Shop</a><a href="#categories">Categories</a><a href="#deals">Deals</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container" id="home">
+      <div class="hero-content">
+        <div class="eyebrow">NEW SEASON • 2026 COLLECTION</div>
+        <h1>Upgrade your everyday.</h1>
+        <p>Curated tech, fashion and lifestyle essentials. Quality products, smart prices and a shopping experience
+          built for you.</p>
+        <div class="hero-buttons">
+          <a class="btn btn-primary" href="#shop">Shop collection →</a>
+          <button class="btn btn-secondary" id="view-deals-btn">View deals</button>
+        </div>
+        <div class="trust-row">
+          <span>✓ Free shipping $75+</span><span>✓ Easy returns</span><span>✓ Secure checkout</span>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="hero-orb orb-one"></div>
+        <div class="hero-orb orb-two"></div>
+        <div class="floating-card fc-one"><span>🎧</span>
+          <div><b>Audio Pro</b><small>From $89</small></div>
+        </div>
+        <div class="floating-card fc-two"><span>⌚</span>
+          <div><b>Smart Watch</b><small>New arrival</small></div>
+        </div>
+        <div class="hero-product">🛍️</div>
+        <div class="sale-bubble">-40%</div>
+      </div>
+    </section>
+
+    <section class="container benefits">
+      <div><span>🚚</span>
+        <div><b>Free Delivery</b><small>Orders over $75</small></div>
+      </div>
+      <div><span>↩</span>
+        <div><b>30-Day Returns</b><small>Hassle-free returns</small></div>
+      </div>
+      <div><span>🔒</span>
+        <div><b>Secure Payment</b><small>100% protected</small></div>
+      </div>
+      <div><span>💬</span>
+        <div><b>24/7 Support</b><small>We're here to help</small></div>
+      </div>
+    </section>
+
+    <section class="container section" id="categories">
+      <div class="section-heading">
+        <div><span class="eyebrow">BROWSE</span>
+          <h2>Shop by category</h2>
+        </div>
+      </div>
+      <div id="category-grid" class="category-grid"></div>
+    </section>
+
+    <section class="container section" id="shop">
+      <div class="section-heading product-heading">
+        <div><span class="eyebrow">OUR PICKS</span>
+          <h2>Featured products</h2>
+        </div>
+        <button class="link-btn" id="clear-filters-btn">Clear filters</button>
+      </div>
+
+      <div class="shop-toolbar">
+        <div class="filter-scroll" id="category-filters"></div>
+        <div class="toolbar-right">
+          <button class="filter-toggle" id="filter-toggle">☷ Filters <span id="filter-active-dot"></span></button>
+          <select id="sort-select" aria-label="Sort products">
+            <option value="featured">Sort: Featured</option>
+            <option value="price-low">Price: Low to high</option>
+            <option value="price-high">Price: High to low</option>
+            <option value="rating">Top rated</option>
+            <option value="newest">Newest</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="shop-layout">
+        <aside class="filter-panel" id="filter-panel">
+          <div class="filter-title"><b>Filters</b><button id="close-filter">×</button></div>
+          <div class="filter-group">
+            <label>Price range</label>
+            <input id="price-range" type="range" min="0" max="500" value="500">
+            <div class="range-values"><span>$0</span><b id="price-value">$500</b></div>
+          </div>
+          <div class="filter-group">
+            <label>Minimum rating</label>
+            <label class="check"><input type="radio" name="rating" value="0" checked> Any rating</label>
+            <label class="check"><input type="radio" name="rating" value="4"> ★ 4.0+</label>
+            <label class="check"><input type="radio" name="rating" value="4.5"> ★ 4.5+</label>
+            <label class="check"><input type="radio" name="rating" value="4.8"> ★ 4.8+</label>
+          </div>
+          <div class="filter-group">
+            <label>Availability</label>
+            <label class="check"><input type="checkbox" id="in-stock-only"> In stock only</label>
+            <label class="check"><input type="checkbox" id="sale-only"> On sale</label>
+          </div>
+          <button class="btn btn-primary full" id="apply-filters">Apply filters</button>
+        </aside>
+
+        <div class="products-wrap">
+          <div class="results-line"><span id="results-count">0 products</span><span id="active-filter-text"></span>
+          </div>
+          <div id="product-grid" class="product-grid"></div>
+          <div id="empty-state" class="empty-state hidden">
+            <div>🔎</div>
+            <h3>No products found</h3>
+            <p>Try changing your search or filters.</p><button class="btn btn-primary" id="reset-search">Reset
+              search</button>
+          </div>
+          <button class="load-more btn btn-secondary" id="load-more">Load more products</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="deal-section" id="deals">
+      <div class="container deal-inner">
+        <div><span class="eyebrow">FLASH SALE</span>
+          <h2>Big savings. Limited time.</h2>
+          <p>Get up to 40% off selected products before the timer ends.</p>
+        </div>
+        <div class="countdown">
+          <div><b id="days">00</b><small>Days</small></div><i>:</i>
+          <div><b id="hours">00</b><small>Hours</small></div><i>:</i>
+          <div><b id="minutes">00</b><small>Min</small></div><i>:</i>
+          <div><b id="seconds">00</b><small>Sec</small></div>
+        </div>
+        <button class="btn btn-light" id="shop-sale-btn">Shop sale →</button>
+      </div>
+    </section>
+
+    <section class="container section newsletter">
+      <div><span class="eyebrow">STAY IN THE LOOP</span>
+        <h2>Get 10% off your first order.</h2>
+        <p>Subscribe for product drops, private offers and useful shopping updates.</p>
+      </div>
+      <form id="newsletter-form"><input type="email" id="newsletter-email" placeholder="Your email address"
+          required><button class="btn btn-primary">Subscribe</button></form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div><a class="logo" href="#">Shoply<span>.</span></a>
+        <p>Modern essentials for modern living.</p>
+      </div>
+      <div><b>Shop</b><a href="#shop">All products</a><a href="#categories">Categories</a><a href="#deals">Deals</a>
+      </div>
+      <div><b>Help</b><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Contact</a></div>
+      <div><b>Follow</b>
+        <div class="socials"><a href="#">IG</a><a href="#">X</a><a href="#">FB</a></div>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Shoply. Demo eCommerce application.</div>
+  </footer>
+
+  <div class="modal-backdrop" id="modal-backdrop"></div>
+  <section class="modal product-modal" id="product-modal" aria-modal="true">
+    <button class="modal-close" data-close-modal>×</button>
+    <div id="product-modal-content"></div>
+  </section>
+
+  <aside class="drawer" id="cart-drawer">
+    <div class="drawer-head">
+      <h2>Your cart</h2><button class="modal-close" id="close-cart">×</button>
+    </div>
+    <div id="cart-items" class="drawer-body"></div>
+    <div class="drawer-footer">
+      <div class="total-line"><span>Subtotal</span><b id="cart-subtotal">$0.00</b></div><small>Taxes and shipping
+        calculated at checkout.</small><button class="btn btn-primary full" id="checkout-btn">Secure checkout →</button>
+    </div>
+  </aside>
+
+  <aside class="drawer" id="wishlist-drawer">
+    <div class="drawer-head">
+      <h2>Your wishlist</h2><button class="modal-close" id="close-wishlist">×</button>
+    </div>
+    <div id="wishlist-items" class="drawer-body"></div>
+  </aside>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>
